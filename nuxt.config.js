@@ -40,6 +40,7 @@ export default {
   build: {
     extend(config, { isDev, isClient }) {
       if (!isDev && isClient) {
+        config.devtool = 'source-map',
         config.plugins.push(
           new HoneybadgerSourceMapPlugin({
             apiKey: process.env.HONEYBADGER_API_KEY,
