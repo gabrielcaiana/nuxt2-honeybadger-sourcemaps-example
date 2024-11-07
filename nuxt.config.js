@@ -44,7 +44,7 @@ export default {
         config.plugins.push(
           new HoneybadgerSourceMapPlugin({
             apiKey: process.env.HONEYBADGER_API_KEY,
-            assetsUrl: 'https://nuxt2-honeybadger-sourcemaps-example.vercel.app/',  // URL onde os assets estão hospedados
+            assetsUrl: 'https://nuxt2-honeybadger-sourcemaps-example.vercel.app/_nuxt',  // URL onde os assets estão hospedados
             revision: process.env.VERCEL_GIT_COMMIT_SHA || new Date().toISOString(),  // ID do commit ou timestamp
           })
         );
