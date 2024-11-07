@@ -1,3 +1,5 @@
+import HoneybadgerSourceMapPlugin from '@honeybadger-io/webpack';
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -5,7 +7,6 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
-    target: 'static',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -37,10 +38,25 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, { isDev, isClient }) {
+      if (!isDev && isClient) {
+        config.plugins.push(
+          new HoneybadgerSourceMapPlugin({
+            apiKey: process.env.HONEYBADGER_API_KEY,
+            assetsUrl: 'https://nuxt2-honeybadger-sourcemaps-example.vercel.app/',
+            revision: process.env.VERCEL_GIT_COMMIT_SHA || new Date().toISOString(),
+          })
+        );
+      }
+    },
+    transpile: ['@honeybadger-io/webpack'],
+    filenames: {
+      app: ({ isDev }) => (isDev ? '[name].js' : '[contenthash].js'),
+    },
   },
 
-  // publicRuntimeConfig: {
-  //   honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
-  //   honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
-  // }
+  publicRuntimeConfig: {
+    honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
+    honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
+  }
 }

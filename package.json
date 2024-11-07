@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@honeybadger-io/js": "^6.10.1",
+    "@honeybadger-io/rollup-plugin": "^5.10.0",
     "@honeybadger-io/vue": "^6.1.26",
+    "@honeybadger-io/webpack": "^6.3.0",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
