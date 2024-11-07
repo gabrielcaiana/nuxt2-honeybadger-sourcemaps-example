@@ -40,6 +40,6 @@ export default {
 
   publicRuntimeConfig: {
     honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
-    honeybadgerEnvironment: process.env.HONEYBAD
+    honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
   }
 }
