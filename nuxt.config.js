@@ -19,45 +19,43 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/honeybadger.js", mode: "client" }],
+  plugins: [{ src: '~/plugins/honeybadger.js', mode: 'client' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
+  modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend(config, { isDev, isClient }) {
+      // Apenas em produção e no lado do cliente
       if (!isDev && isClient) {
-        config.devtool = 'source-map',
+        config.devtool = 'source-map';  // Gera sourcemaps no build de produção
         config.plugins.push(
           new HoneybadgerSourceMapPlugin({
             apiKey: process.env.HONEYBADGER_API_KEY,
-            assetsUrl: 'https://nuxt2-honeybadger-sourcemaps-example.vercel.app/',
-            revision: process.env.VERCEL_GIT_COMMIT_SHA || new Date().toISOString(),
+            assetsUrl: 'https://nuxt2-honeybadger-sourcemaps-example.vercel.app/',  // URL onde os assets estão hospedados
+            revision: process.env.VERCEL_GIT_COMMIT_SHA || new Date().toISOString(),  // ID do commit ou timestamp
           })
         );
       }
     },
-    transpile: ['@honeybadger-io/webpack'],
+    transpile: ['@honeybadger-io/webpack'],  // Transpilação do plugin
     filenames: {
-      app: ({ isDev }) => (isDev ? '[name].js' : '[contenthash].js'),
+      app: ({ isDev }) => (isDev ? '[name].js' : '[contenthash].js'),  // Nome dos arquivos gerados
     },
   },
 
   publicRuntimeConfig: {
     honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
-    honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
+    honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT,
   }
-}
+};
