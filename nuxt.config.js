@@ -38,8 +38,8 @@ export default {
   build: {
   },
 
-  publicRuntimeConfig: {
-    honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
-    honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
-  }
+  // publicRuntimeConfig: {
+  //   honeybadgerApiKey: process.env.HONEYBADGER_API_KEY,
+  //   honeybadgerEnvironment: process.env.HONEYBADGER_ENVIRONMENT
+  // }
 }

@@ -1,10 +1,10 @@
 import HoneybadgerVue from "@honeybadger-io/vue";
 import Vue from "vue";
 
-export default ({ app, $config }, inject) => {
+export default ({ app }, inject) => {
   const config = {
-    apiKey: $config.honeybadgerApiKey,
-    environment: $config.honeybadgerEnvironment
+    apiKey: 'hbp_fSPoTgCIcmUtftpD59HxJOsNEzKDMh1YjrS0',
+    environment: 'production',
   };
 
   Vue.use(HoneybadgerVue, config);
